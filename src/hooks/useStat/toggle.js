@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 
 export default function Toggle() {
     const[isText, setIsText]= useState(true)
-  return (
-   <div>
-     <h2>toogle text</h2>
-     <p>{isText?"hello world":"goodbye world!"}</p>
-     <button onClick={() => setIsText(!isText)}>Toggle me</button>
-   </div>
-  )
+    return (
+    <div>
+        <h2>toogle text</h2>
+        <p>{isText?"hello world":"goodbye world!"}</p>
+        <button onClick={() => setIsText(!isText)}>Toggle me</button>
+    </div>
+    )
 }
 
 
@@ -28,7 +28,11 @@ export function Toggle2(){
 
 export function Toggle3(){
     const [text, setText] = useState("")
-    const[inputValue, setInputValue] = useState({})
+    const[inputValue, setInputValue] = useState({textInput:"", })
+    function handelChange(e){
+        e.preventDefault();
+        setInputValue({...inputValue})
+    }
     return(
         <div>
             <h2>Toggle3</h2>
