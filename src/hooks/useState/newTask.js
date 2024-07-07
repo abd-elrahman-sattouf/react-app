@@ -1,30 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function NewTask() {
-    const [task, setTask] = useState("");
-    const [inputValue, setInputValue] = useState({
-    textInput: "",
-  });
+  const [task, setTask] = useState("");
+  const [textInput, setTextInput] = useState("");
+
+  useEffect(() => {
+    console.log("Todos updated:", task);
+  }, [task]);
+
 
   const handleTextChange = (e) => {
-    e.preventDefault();
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+    setTextInput(e.target.value);
   };
 
-   const addTask = (event) => {
+  const addTask = (event) => {
     event.preventDefault();
-    setTask(inputValue.textInput);
+    setTask((prevTask) => prevTask + "\n" + textInput);
+    setTextInput(""); // Clear the input field after adding a task
   };
 
-   
   return (
     <div>
-      <p>{task}</p>
       <form onSubmit={addTask}>
-        <input name="textInput" type="text" onChange={handleTextChange} />
-        <button type="submit">change text</button>
+        <input name="textInput" type="text" value={textInput} onChange={handleTextChange} />
+        <button type="submit">Add Task</button>
       </form>
+      <ul>
+        {task.split("\n").map((taskItem, index) => (
+          <li key={index}>{taskItem}</li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
-
