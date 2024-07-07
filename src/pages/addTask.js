@@ -1,12 +1,13 @@
 import React from 'react'
-import newTask from '../hooks/useState/newTask'
+import NewTask from '../hooks/useState/newTask'
 
-function addTask() {
+function AddTask() {
   return (
     <div>
-      <newTask />
+      <p>now add your task in the field and press the button</p>
+      <NewTask />
     </div>
   )
 }
 
-export default addTask
+export default AddTask

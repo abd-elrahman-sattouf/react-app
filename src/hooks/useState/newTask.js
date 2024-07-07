@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 
-function newTask() {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [task , setTask] = useState("");
+export default function NewTask() {
+    const [task, setTask] = useState("");
+    const [inputValue, setInputValue] = useState({
+    textInput: "",
+  });
 
-    const addTask = (event) => {
-      setTask(event.target.value);
-    }
+  const handleTextChange = (e) => {
+    e.preventDefault();
+    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  };
+
+   const addTask = (event) => {
+    event.preventDefault();
+    setTask(inputValue.textInput);
+  };
+
+   
   return (
     <div>
       <p>{task}</p>
-      <input
-      type='text'
-      value={task}
-      onChange={addTask}
-      placeholder='add your task'
-      />
+      <form onSubmit={addTask}>
+        <input name="textInput" type="text" onChange={handleTextChange} />
+        <button type="submit">change text</button>
+      </form>
     </div>
   )
 }
 
-export default newTask
