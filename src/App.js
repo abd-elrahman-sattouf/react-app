@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-import AddTask from './pages/AddTask';
+import AddTask from './pages/addTask';
 function App() {
   return (
     <div className="App">

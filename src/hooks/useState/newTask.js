@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 export default function NewTask() {
-  const [task, setTask] = useState("");
+  const [task, setTasks] = useState([]);
   const [textInput, setTextInput] = useState("");
 
   useEffect(() => {
     console.log("Todos updated:", task);
   }, [task]);
-
 
   const handleTextChange = (e) => {
     setTextInput(e.target.value);
@@ -15,8 +13,12 @@ export default function NewTask() {
 
   const addTask = (event) => {
     event.preventDefault();
-    setTask((prevTask) => prevTask + "\n" + textInput);
-    setTextInput(""); // Clear the input field after adding a task
+    setTasks([...task, textInput]);
+    setTextInput(""); 
+  };
+   const removeTask = (index) => {
+    const updatedTasks = task.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
   };
 
   return (
@@ -26,8 +28,11 @@ export default function NewTask() {
         <button type="submit">Add Task</button>
       </form>
       <ul>
-        {task.split("\n").map((taskItem, index) => (
-          <li key={index}>{taskItem}</li>
+        {task.map((task, index) => (
+          <li key={index}>
+            {task}
+            <button onClick={() => removeTask(index)}>Remove</button>
+          </li>
         ))}
       </ul>
     </div>

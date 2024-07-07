@@ -1,5 +1,5 @@
 import React from 'react'
-import NewTask from '../hooks/useState/NewTask'
+import NewTask from '../hooks/useState/newTask'
 
 function AddTask() {
   return (
